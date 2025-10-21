@@ -1,0 +1,12 @@
+{
+  "name": "locator-extractor",
+  "version": "1.0.0",
+  "description": "Standalone Playwright-based multi-framework locator extractor (Playwright, Selenium, Custom).",
+  "type": "module",
+  "scripts": {
+    "start": "node locator-extractor.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

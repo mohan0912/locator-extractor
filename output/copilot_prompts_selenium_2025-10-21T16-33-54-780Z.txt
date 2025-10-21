@@ -1,0 +1,110 @@
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "input",
+  "id": null,
+  "name": null,
+  "class": "font14 fullWidth",
+  "text": "",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "type": "text",
+    "class": "font14 fullWidth",
+    "autocomplete": "off",
+    "placeholder": "Enter Mobile Number",
+    "data-cy": "userName",
+    "value": "",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "div#SW > div > div:nth-of-type(2) > div:nth-of-type(2) > div > section > form > div > div > input",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/section[1]/form[1]/div[1]/div[1]/input[1]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/",
+  "timestamp": "2025-10-21T16:33:17.263Z"
+}
+
+Return only the Java locator statement.
+
+========================
+
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "a",
+  "id": null,
+  "name": null,
+  "class": null,
+  "text": "Privacy Policy",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "data-cy": "LoginFlowPopup_97",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "div#SW > div > div:nth-of-type(2) > div:nth-of-type(2) > div > section > div:nth-of-type(3) > p > a",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/section[1]/div[3]/p[1]/a[1]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/",
+  "timestamp": "2025-10-21T16:33:33.107Z"
+}
+
+Return only the Java locator statement.
+
+========================
+
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "a",
+  "id": null,
+  "name": null,
+  "class": null,
+  "text": "User Agreement",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "data-cy": "LoginFlowPopup_98",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "div#SW > div > div:nth-of-type(2) > div:nth-of-type(2) > div > section > div:nth-of-type(3) > p > a:nth-of-type(2)",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/section[1]/div[3]/p[1]/a[2]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/",
+  "timestamp": "2025-10-21T16:33:34.311Z"
+}
+
+Return only the Java locator statement.
+
+========================
+
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "a",
+  "id": null,
+  "name": null,
+  "class": null,
+  "text": "T&Cs",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "data-cy": "LoginFlowPopup_99",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "div#SW > div > div:nth-of-type(2) > div:nth-of-type(2) > div > section > div:nth-of-type(3) > p > a:nth-of-type(3)",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/section[1]/div[3]/p[1]/a[3]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/",
+  "timestamp": "2025-10-21T16:33:35.450Z"
+}
+
+Return only the Java locator statement.

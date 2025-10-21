@@ -1,0 +1,58 @@
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "a",
+  "id": null,
+  "name": null,
+  "class": "headerIcons makeFlex hrtlCenter column",
+  "text": "Travel Insurance",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "href": "https://www.makemytrip.com/insurance/",
+    "class": "headerIcons makeFlex hrtlCenter column",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "div#SW > div > div:nth-of-type(2) > div > div > nav > ul > li:nth-of-type(12) > span > a",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/nav[1]/ul[1]/li[12]/span[1]/a[1]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/toursandattractions/landing",
+  "timestamp": "2025-10-21T16:28:54.244Z"
+}
+
+Return only the Java locator statement.
+
+========================
+
+You are an automation expert using Selenium WebDriver (Java).
+Generate the most stable locator using By.id, By.name, By.cssSelector, or By.xpath.
+
+Element details:
+{
+  "tag": "input",
+  "id": "activityDate",
+  "name": null,
+  "class": "hdsw_inputField font30 latoBlack fontFamilyHeading",
+  "text": "",
+  "role": null,
+  "ariaLabel": null,
+  "attributes": {
+    "placeholder": "Add a date",
+    "data-cy": "activityDateVal",
+    "id": "activityDate",
+    "class": "hdsw_inputField font30 latoBlack fontFamilyHeading",
+    "readonly": "",
+    "type": "text",
+    "value": "",
+    "style": "outline: rgb(30, 144, 255) solid 2px; box-shadow: rgba(30, 144, 255, 0.5) 0px 0px 6px 2px;"
+  },
+  "css": "input#activityDate",
+  "xpath": "/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/label[1]/div[1]/input[1]",
+  "visible": true,
+  "pageUrl": "https://www.makemytrip.com/toursandattractions/landing",
+  "timestamp": "2025-10-21T16:29:03.088Z"
+}
+
+Return only the Java locator statement.

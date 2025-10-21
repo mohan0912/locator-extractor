@@ -1,0 +1,11 @@
+{
+  "url": "https://www.makemytrip.com",
+  "framework": "selenium",
+  "customExample": "",
+  "tagFilter": ["button", "input", "a"],
+  "scanHidden": false,
+  "headless": false,
+  "promptType": "locator",
+  "outputDir": "output",
+  "timeout": 60
+}
