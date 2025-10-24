@@ -1,11 +1,24 @@
 {
   "url": "https://www.makemytrip.com",
+
   "framework": "selenium",
   "customExample": "",
+
   "tagFilter": ["button", "input", "a"],
   "scanHidden": false,
+  "autoExtract": false,
   "headless": false,
+
   "promptType": "locator",
   "outputDir": "output",
-  "timeout": 60
+  "jsonPrefix": "locators",
+  "promptPrefix": "copilot_prompts",
+
+  "timeout": 60,
+
+  "useCDP": false,
+
+  "proxyUrl": "",
+  "proxyUser": "",
+  "proxyPass": ""
 }
