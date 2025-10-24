@@ -142,12 +142,15 @@ CLI arguments always override config values.
 | `--promptType` | `locator`, `action`, or `assertion` | `--promptType=action` |
 | `--useCDP` | Enable Chrome DevTools metadata capture | `--useCDP` |
 | `--timeout` | Auto-stop after inactivity (seconds) | `--timeout=90` |
+| `--navTimeout` | Navigation timeout in milliseconds (default: 120000) | `--navTimeout=180000` |
+| `--waitUntil`  | Navigation wait strategy: `load`, `domcontentloaded`, or `networkidle` | `--waitUntil=domcontentloaded` |
 | `--outputDir` | Output folder path | `--outputDir=output` |
 | `--jsonPrefix` | Prefix for JSON filename | `--jsonPrefix=locators` |
 | `--promptPrefix` | Prefix for Copilot prompt file | `--promptPrefix=copilot_prompts` |
 | `--proxyUrl` | Proxy server URL | `--proxyUrl=http://proxy.corp.local:8080` |
 | `--proxyUser` | Proxy username | `--proxyUser=alice` |
 | `--proxyPass` | Proxy password (masked in logs) | `--proxyPass=Secret123` |
+
 
 ---
 
@@ -173,6 +176,24 @@ CLI arguments always override config values.
   "proxyPass": ""
 }
 ```
+---
+
+## 🌐 Navigation Behavior
+
+By default, the extractor waits until the browser finishes loading the DOM.
+
+| Parameter | Description |
+|------------|-------------|
+| `waitUntil` | Controls when a page is considered "loaded":  |
+|  | - `load` — waits for full load event (slowest) |
+|  | - `domcontentloaded` — waits for main DOM to be parsed (default) |
+|  | - `networkidle` — waits for no network calls (some sites never reach this) |
+| `navTimeout` | Maximum time to wait before giving up navigation (default: 120000 ms). |
+
+Example:
+```bash
+node locator-extractor.js https://www.makemytrip.com --waitUntil=domcontentloaded --navTimeout=180000
+
 
 ---
 

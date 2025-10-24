@@ -711,7 +711,18 @@ async function runExtractor(options = {}) {
 
     // Navigate
     log("INFO", `Launching browser for ${url} (headless=${headless})`);
-    await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
+    // 🕒 Informational log for navigation parameters
+    log(
+      "INFO",
+      `Navigating to ${url} with timeout=${getArg("--navTimeout", fileConfig.navTimeout || 120000)
+      }ms and waitUntil=${getArg("--waitUntil", fileConfig.waitUntil || "domcontentloaded")
+      }`
+    );
+
+    await page.goto(url, {
+      waitUntil: getArg("--waitUntil", fileConfig.waitUntil || "domcontentloaded"),
+      timeout: parseInt(getArg("--navTimeout", fileConfig.navTimeout || 120000))
+    });
     // small wait to stabilize
     await page.waitForTimeout(1000);
     log("INFO", `✅ Page loaded: ${page.url()}`);
@@ -762,7 +773,7 @@ async function runExtractor(options = {}) {
           // reuse __locatorScanAll if available
           try {
             if (typeof window.__locatorScanAll === "function") return window.__locatorScanAll(filtersCsv || null);
-          } catch {}
+          } catch { }
           // fallback: simple walker
           const allowed = filtersCsv ? filtersCsv.split(",").map(s => s.trim().toLowerCase()).filter(Boolean) : null;
           function elementMatchesFilter(el, filters) {
@@ -795,7 +806,7 @@ async function runExtractor(options = {}) {
                 name: el.getAttribute && el.getAttribute('name') || null,
                 class: el.className || null,
                 text: (el.innerText || "").trim().slice(0, 300),
-                css: (function(){ try { /* cheap fallback */ return el.tagName.toLowerCase(); } catch { return null; } })(),
+                css: (function () { try { /* cheap fallback */ return el.tagName.toLowerCase(); } catch { return null; } })(),
                 xpath: null,
                 attributes: attrs,
                 dataset: Object.assign({}, el.dataset),
@@ -803,7 +814,7 @@ async function runExtractor(options = {}) {
                 x: rect.x,
                 y: rect.y
               });
-            } catch {}
+            } catch { }
           }
           return out;
         }, tagFilter ? tagFilter.join(",") : null);
@@ -817,7 +828,7 @@ async function runExtractor(options = {}) {
               try {
                 const meta = await getAdvancedMetadata(page, client, r.css);
                 if (meta) r.advanced = meta;
-              } catch {}
+              } catch { }
             }
             allLocators.push(r);
             allPrompts.push(buildPrompt(r, framework, promptType, framework, customExample));
@@ -872,7 +883,7 @@ async function runExtractor(options = {}) {
                 dataset: Object.assign({}, el.dataset),
                 visible: false
               });
-            } catch {}
+            } catch { }
           }
           return out;
         }, tagFilter ? tagFilter.join(",") : null);
@@ -882,7 +893,7 @@ async function runExtractor(options = {}) {
             r.pageUrl = page.url();
             r.timestamp = new Date().toISOString();
             if (useCDP && client && r.css) {
-              try { const meta = await getAdvancedMetadata(page, client, r.css); if (meta) r.advanced = meta; } catch {}
+              try { const meta = await getAdvancedMetadata(page, client, r.css); if (meta) r.advanced = meta; } catch { }
             }
             allLocators.push(r);
             allPrompts.push(buildPrompt(r, framework, promptType, framework, customExample));
@@ -906,7 +917,7 @@ async function runExtractor(options = {}) {
             process.stdin.emit("data");
             clearInterval(interval);
           }
-        } catch {}
+        } catch { }
       }, 2000);
     }
 
@@ -949,7 +960,7 @@ async function runExtractor(options = {}) {
     try {
       if (context) await context.close();
       if (browser) await browser.close();
-    } catch {}
+    } catch { }
     throw err;
   }
 }
@@ -972,24 +983,34 @@ Usage:
 
 Options:
   --framework=<type>       playwright | selenium | cypress | robot | custom | bdd
-  --customExample=<text>   Example locator definition (for custom)
+  --customExample=<text>   Example locator definition (for custom frameworks)
   --tagFilter=<tags>       Comma-separated tags/attrs (button,input,a,[data-test])
   --scanHidden             Include hidden elements in scan
   --autoExtract            Run Smart DOM Walker automatically
-  --headless               Run browser headless
+  --headless               Run browser headless (for CI or no-GUI environments)
   --promptType=<type>      locator | action | assertion
   --useCDP                 Enable Chrome DevTools Protocol advanced metadata
-  --timeout=<seconds>      Auto-stop after inactivity
-  --outputDir=<dir>        Folder to save results
+  --timeout=<seconds>      Auto-stop after inactivity (manual mode)
+  --navTimeout=<ms>        Navigation timeout in milliseconds (default: 120000)
+  --waitUntil=<state>      Wait condition: load | domcontentloaded | networkidle
+  --outputDir=<dir>        Folder to save results (default: output)
+  --jsonPrefix=<prefix>    Prefix for locator JSON files (default: locators)
+  --promptPrefix=<prefix>  Prefix for Copilot prompt files (default: copilot_prompts)
   --proxyUrl=<url>         Proxy URL (overrides env)
   --proxyUser=<user>       Proxy username
   --proxyPass=<pass>       Proxy password
-  --jsonPrefix=<prefix>    Prefix for JSON (default: locators)
-  --promptPrefix=<prefix>  Prefix for prompt files (default: copilot_prompts)
 
-Example:
+Examples:
   node locator-extractor.js https://example.com --framework=selenium --autoExtract --useCDP
+  node locator-extractor.js https://example.com --waitUntil=domcontentloaded --navTimeout=180000
+
+How to End Extraction:
+  🖱️ In manual mode: Press ENTER in the terminal to save and stop.
+  🤖 In autoExtract mode: Wait for scan to complete, then press ENTER to save and exit.
+  ⏳ If --timeout is set: The process will auto-stop after inactivity.
+  🛑 To cancel anytime: Press Ctrl + C for graceful shutdown.
 `);
+
   process.exit(0);
 }
 
@@ -1015,6 +1036,8 @@ const options = {
   proxyPass: getArg("--proxyPass", fileConfig.proxyPass || null),
   jsonPrefix: getArg("--jsonPrefix", fileConfig.jsonPrefix || "locators"),
   promptPrefix: getArg("--promptPrefix", fileConfig.promptPrefix || "copilot_prompts"),
+  navTimeout: parseInt(getArg("--navTimeout", fileConfig.navTimeout || 120000)),
+  waitUntil: getArg("--waitUntil", fileConfig.waitUntil || "domcontentloaded"),
 };
 
 if (!options.url) {

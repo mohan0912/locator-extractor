@@ -1,24 +1,24 @@
 {
-  "url": "https://www.makemytrip.com",
-
+  "url": "https://testautomationpractice.blogspot.com/",
   "framework": "selenium",
   "customExample": "",
-
-  "tagFilter": ["button", "input", "a"],
+  "tagFilter": [
+    "button",
+    "input",
+    "a"
+  ],
   "scanHidden": false,
   "autoExtract": false,
   "headless": false,
-
   "promptType": "locator",
   "outputDir": "output",
   "jsonPrefix": "locators",
   "promptPrefix": "copilot_prompts",
-
   "timeout": 60,
-
-  "useCDP": false,
-
+  "useCDP": true,
   "proxyUrl": "",
   "proxyUser": "",
-  "proxyPass": ""
+  "proxyPass": "",
+  "navTimeout": 120000,
+  "waitUntil": "domcontentloaded"
 }
