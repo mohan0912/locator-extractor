@@ -727,6 +727,19 @@ async function runExtractor(options = {}) {
     await page.waitForTimeout(1000);
     log("INFO", `✅ Page loaded: ${page.url()}`);
 
+    if (fileConfig.autoExtract) {
+      log("INFO", "---------------------------------------------");
+      log("INFO", "You may now manually navigate to the desired page within the browser.");
+      log("INFO", "Once you’ve reached the target screen, press ENTER here to start extraction.");
+      log("INFO", "---------------------------------------------");
+      await new Promise((resolve) => {
+        process.stdin.once("data", () => {
+          log("INFO", "✅ User confirmed. Starting extraction...");
+          resolve();
+        });
+      });
+    }
+
     const allLocators = [];
     const allPrompts = [];
     let lastActivity = Date.now();
